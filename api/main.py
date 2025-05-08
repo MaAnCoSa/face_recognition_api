@@ -1,5 +1,12 @@
 from flask import Flask
+import json
+import numpy as np
+import pickle
+
 app = Flask(__name__)
+
+with open("./api/database.pkl", "rb") as file:
+    database = pickle.load(file)
 
 @app.route("/")
 def home():
@@ -8,4 +15,4 @@ def home():
 #Test
 @app.route("/test")
 def test():
-    return "TEST"
+    return str(database.keys())
